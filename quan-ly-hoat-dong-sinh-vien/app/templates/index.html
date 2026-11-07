@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <meta name="theme-color" content="#f3efe4">
+  <title>Tình nguyện HPU · Đại học Hải Phòng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='volunteer.css') }}?v=20261026-4">
+</head>
+<body>
+  <div id="login-screen" class="login-screen hidden">
+    <canvas id="login-canvas" aria-hidden="true"></canvas>
+    <div class="login-glow glow-one"></div><div class="login-glow glow-two"></div>
+    <section class="login-card">
+      <div class="login-brand"><span class="logo-frame"><img class="official-logo" src="https://dhhp.edu.vn/img/2025-02-14/478192161_1094676262674907_466303092279143138_n.jpg" alt="Logo Trường Đại học Hải Phòng" referrerpolicy="no-referrer"><b>HPU</b></span><span><strong>Tình nguyện HPU</strong><small>ĐẠI HỌC HẢI PHÒNG</small></span></div>
+      <div id="login-pane">
+        <p class="eyebrow">CỘNG ĐỒNG TÌNH NGUYỆN</p>
+        <h1>Góp sức nhỏ,<br><em>làm điều tử tế.</em></h1>
+        <p class="login-copy">Kết nối sinh viên, giảng viên và những hoạt động vì cộng đồng tại Hải Phòng.</p>
+        <form id="login-form" class="form-stack">
+          <label>Tên đăng nhập<input name="username" autocomplete="username" placeholder="Nhập tên đăng nhập" required></label>
+          <label>Mật khẩu<span class="password-field"><input name="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required><button class="show-pass" type="button" aria-label="Hiện mật khẩu">◉</button></span></label>
+          <div id="login-error" class="form-error" role="alert"></div>
+          <button class="button primary login-submit" type="submit"><span>Đăng nhập</span><b>↗</b></button>
+        </form>
+        <p class="demo-credential">Tài khoản mẫu: <b>admin / admin123</b> · <b>sv003 / sv123456</b> · <b>gv002 / gv123456</b></p>
+        <div class="login-foot"><span>Hoạt động tình nguyện · HPU</span><button class="text-link" data-action="show-register">Tạo tài khoản sinh viên ↗</button></div>
+      </div>
+      <div id="register-pane" class="hidden">
+        <p class="eyebrow">THAM GIA CỘNG ĐỒNG</p>
+        <h1>Tạo hồ sơ<br><em>sinh viên.</em></h1>
+        <p class="login-copy">Đăng ký tài khoản sinh viên để tìm hoạt động và ghi nhận giờ tình nguyện.</p>
+        <form id="register-form" class="form-stack">
+          <label>Họ và tên<input name="full_name" autocomplete="name" maxlength="120" required></label>
+          <div class="register-fields"><label>Tên đăng nhập<input name="username" autocomplete="username" minlength="3" maxlength="50" required></label><label>Mã sinh viên<input name="student_code" maxlength="40" placeholder="VD: HPU26SV051" required></label></div>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Mật khẩu<span class="password-field"><input name="password" type="password" autocomplete="new-password" minlength="8" required><button class="show-pass" type="button" aria-label="Hiện mật khẩu">◉</button></span></label>
+          <label>Nhập lại mật khẩu<input name="confirm_password" type="password" autocomplete="new-password" minlength="8" required></label>
+          <div id="register-error" class="form-error" role="alert"></div>
+          <button class="button primary login-submit" type="submit"><span>Tạo tài khoản</span><b>↗</b></button>
+        </form>
+        <div class="login-foot"><span>Đã có tài khoản?</span><button class="text-link" data-action="show-login">Quay lại đăng nhập</button></div>
+      </div>
+    </section>
+    <div class="login-caption"><b>THAM GIA · KẾT NỐI · TỎA SÁNG</b><span>Không chỉ là một hoạt động. Là câu chuyện của bạn.</span></div>
+  </div>
+
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Tình nguyện HPU trang chủ"><span class="logo-frame sidebar-logo"><img class="official-logo" src="https://dhhp.edu.vn/img/2025-02-14/478192161_1094676262674907_466303092279143138_n.jpg" alt="Logo Trường Đại học Hải Phòng" referrerpolicy="no-referrer"><b>HPU</b></span><span class="brand-name">Tình nguyện HPU<small>ĐẠI HỌC HẢI PHÒNG</small></span></a>
+      <div class="campus-switch"><span class="campus-icon">✳</span><span><b>Trường Đại học Hải Phòng</b><small>Sinh viên · Giảng viên · Cộng đồng</small></span><span class="switch-chevron">⌄</span></div>
+      <div class="nav-label">KHÔNG GIAN CỦA BẠN</div>
+      <nav id="main-nav" class="main-nav"></nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><span class="help-spark">✦</span><b>Cần hỗ trợ?</b><p>Đội ngũ sinh viên luôn sẵn sàng giúp bạn.</p><a href="https://dhhp.edu.vn/" target="_blank" rel="noopener">Cổng thông tin HPU <span>↗</span></a></div>
+        <button class="sidebar-profile" id="profile-shortcut"><span class="avatar" id="avatar-initial">NT</span><span class="profile-name"><b id="sidebar-name">Người dùng</b><small id="sidebar-role">Sinh viên</small></span><span class="more-dots">···</span></button>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Mở menu">☰</button>
+        <div class="topbar-search"><div class="breadcrumbs"><span>Không gian</span><b>/</b><strong id="breadcrumb-current">Trang chủ</strong></div><label class="global-search"><span>⌕</span><input id="global-search" placeholder="Tìm hoạt động, sinh viên, giảng viên…" aria-label="Tìm kiếm toàn hệ thống"></label></div>
+        <div class="top-actions"><div class="today-label"><span class="live-dot"></span><span id="current-date"></span><b id="current-time"></b></div><button class="icon-button notification-shortcut" id="notification-shortcut" aria-label="Thông báo">♧<i id="notification-dot" class="notification-dot hidden"></i></button><button class="icon-button" id="settings-shortcut" aria-label="Cài đặt giao diện">⚙</button><button class="top-account" id="top-account" aria-label="Mở hồ sơ"><span class="top-avatar" id="top-avatar">NT</span><span><b id="top-name">Người dùng</b><small id="top-role">Sinh viên</small></span><i>⌄</i></button></div>
+      </header>
+      <section id="page-content" class="page-content" aria-live="polite"></section>
+    </main>
+  </div>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <div id="modal-root"></div>
+  <script src="{{ url_for('static',filename='app.js') }}?v=20261026-4" defer></script>
+</body>
+</html>

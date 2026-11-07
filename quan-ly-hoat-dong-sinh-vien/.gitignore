@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.py[cod]
+instance/app.db
+instance/app.db-*
+instance/.secret_key
+instance/backups/
+tests/__pycache__/
