@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "quan-ly-hoat-dong-sinh-vien/app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "quan-ly-hoat-dong-sinh-vien/app.py"
+    }
+  ]
+}
