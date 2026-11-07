@@ -1,0 +1,2 @@
+[tool.vercel]
+app = "quan-ly-hoat-dong-sinh-vien/app.py:app"
